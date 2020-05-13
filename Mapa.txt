@@ -1,0 +1,3 @@
+The MacMillan Estate, Ironworks of Misery, false, false, false, false
+Ormond, Mount Ormond Resort, false, false, false, false
+Autohaven Wreckers, Gas Heaven, false, false, false, false
