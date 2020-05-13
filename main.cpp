@@ -68,6 +68,7 @@ int main()
 
     //Mapa m("Mapa", "Mapa", false, false, false, false);
     //m.pozivcitanja();
+	//tmina
 
     Generator g(false, 0);
     cout<<g<<endl;
