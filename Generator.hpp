@@ -1,6 +1,6 @@
 #ifndef GENERATOR_HPP_INCLUDED
 #define GENERATOR_HPP_INCLUDED
-
+#include <fstream>
 class Generator
 {
     protected:
@@ -35,7 +35,16 @@ class Generator
                 return false;
         }
 
-        friend ostream& operator<<(ostream& izlaz, const Generator &g);
+        
+
+        friend ostream& operator<<(ostream& izlaz, const Generator &g)
+        {
+            izlaz<<"Generator: ispis"<<endl;
+            izlaz<<"Popravljen: "<<g.Popravljen<<endl;
+            izlaz<<"Procenat Popravljenosti: "<<g.ProcenatPopravljenosti<<endl<<endl;
+
+            return izlaz;
+        }
 
 };
 

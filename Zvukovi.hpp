@@ -21,7 +21,17 @@ class Zvukovi{
                     GlavniZvuk="Jurnjava muzka";
                 }
             }
-            friend ostream& operator<<(ostream& izlaz, const Zvukovi &z);
+
+            friend ostream& operator<<(ostream& izlaz, const Zvukovi &z)
+            {   
+
+                izlaz<<"Zvukovi: ispis"<<endl;
+                izlaz<<"GlavniZvuk: "<<z.GlavniZvuk<<endl;
+                izlaz<<"SporedniZvuk: "<<z.SporedniZvuk<<endl;
+                izlaz<<"Heartbeat: "<<z.Heartbeat<<endl<<endl;
+
+                return izlaz;
+            }            
 };
 
 #endif // ZVUKOVI_HPP_INCLUDED

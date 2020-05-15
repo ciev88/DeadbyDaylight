@@ -40,7 +40,16 @@ class KillerItem:public Item
          Movespeed=ms;
         }
 
-        friend ostream& operator<<(ostream& izlaz, const KillerItem &ki);
+        friend ostream& operator<<(ostream& izlaz, const KillerItem &ki)
+        {
+            izlaz<<"Naziv Itema: "<<ki.Naziv<<endl;
+            izlaz<<"Opis Itema: "<<ki.Opis<<endl;
+            izlaz<<"Vrsta Itema: "<<ki.Vrsta_Itema<<endl;
+            izlaz<<"Oneshot:"<<ki.Oneshot<<endl;
+            izlaz<<"Movespeed:"<<ki.Movespeed<<endl<<endl;
+
+            return izlaz;
+        }
 
 };
 
