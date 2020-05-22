@@ -24,9 +24,11 @@ protected:
 	Survivor s2;
 	Survivor s3;
 	Survivor s4;
+	vector<Perk> perkovi;
 public:
 	Game()
 	{
+
 		UnosKillera();
 		UnosSurvivora();
 	}
@@ -69,9 +71,9 @@ public:
 		for(int i=0;i<4;i++)
 		{
 			cout << "Unos "<<i+1<<". survivora:";
-			string Ime_Prezime;
+			string Ime,Prezime;
 			cout << "Ime i prezime: ";
-			cin >> Ime_Prezime;
+			cin >> Ime >> Prezime;
 			char cDLC;
 			cout << "DLC? d/n ";
 			cin >> cDLC;
@@ -98,7 +100,7 @@ public:
 				FastHeal=false;
 			cout << "Blood point multiplier: ";
 			cin >> BPM;
-			Survivor s(Ime_Prezime,DLC,Povezanost,ImeItema,OpisItema,VrstaItema,FastHeal,BPM);
+			Survivor s(Ime,Prezime,DLC,Povezanost,ImeItema,OpisItema,VrstaItema,FastHeal,BPM);
 			if(i==0) s1=s;
 			else if(i==1) s2=s;
 			else if(i==2) s3=s;
