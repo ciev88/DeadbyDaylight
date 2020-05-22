@@ -5,13 +5,8 @@ int main()
     Game g;
     g.play();
 
-
-
-    /*Funkcionalnost jeste da na kraju ispisemo statistku rezultata meca
-
-      dakle, koji survivor je zavrsio u kom stanju, koji item je izgubljen,
-
-      koliko je  ko zaradi bloodpointsa, rank progres i sl.*/
+    
+    // Profesorka, licno vas molim da me baas dooobro propitate, Aleksa je mi je previse pomogao, al nisam ga mogao odgovoriti 
 
     //Mapa m("Mapa", "Mapa", false, false, false, false); 
     //m.pozivcitanja();
@@ -39,6 +34,6 @@ int main()
     ss.provera(t);
 
     Mapa m("Ime", "Lokacija", true, true, true, true);*/
-    g.SacuvajPerkove();
+   // g.SacuvajPerkove();
     return 0;
 }
