@@ -1,7 +1,12 @@
 #include <iostream>
-#include<fstream>
-using namespace std;
+#include <algorithm>
+#include <string>
+#include <fstream>
+#include <cstdlib>
 #include <vector>
+using namespace std;
+const char clear[]="clear"; //UNIX
+//const char clear[]="cls"; //Windows
 #include "Mapa.hpp"
 #include "Generator.hpp"
 #include "Item.hpp"
@@ -12,6 +17,7 @@ using namespace std;
 #include "Survivori.hpp"
 #include "Zvukovi.hpp"
 #include "Igrac.hpp"
+#include "Game.hpp"
 
 bool StanjeSurvivora::exposed=false;
 
@@ -23,30 +29,21 @@ int main()
 
       koliko je  ko zaradi bloodpointsa, rank progres i sl.*/
 
-    //Mapa m("Mapa", "Mapa", false, false, false, false);
+    //Mapa m("Mapa", "Mapa", false, false, false, false); 
     //m.pozivcitanja();
-    //niggatoni
-
-    Generator g(false, 0);
-    cout<<g<<endl;
-
-    Generator g1(false, 100);
-    Generator g2(false, 100);
-    Generator g3(false, 100);
-    Generator g4(false, 100);
-    Generator g5(false, 100);
-    Generator g6(false, 0);
-    Generator g7(false, 0);
     
 
+    /*Generator g(false, 0);
+    cout<<g<<endl;
+    
     Zvukovi z("Zvuk 1", "Zvuk 2", false);
     cout<<z<<endl;
 
     Killer k("Shape", true, true, "ime", "opis", "vrsta", false, 1.25);
     cout<<k<<endl;
 
-    Survivor s("William Bill Overback", true, true, "ime", "opis", "vrsta", false, 1.5);
-
+    Survivor s("Cloudette Morrel", true, true, "ime", "opis", "vrsta", true, 1.5);
+    cout<<s<<endl;
 
     Totem t(true, true);
 
@@ -57,20 +54,9 @@ int main()
 
     ss.provera(t);
 
-    Mapa m("Ime", "Lokacija", true, true, true, true);
-    m.brojGeneratora();
-    m.dodajGen(g);
-    m.dodajGen(g1);
-    m.dodajGen(g2);
-    m.dodajGen(g3);
-    m.dodajGen(g4);
-    m.dodajGen(g5);
-    m.dodajGen(g6);
-    m.dodajGen(g7);
-    m.brojGeneratora();
-    m.ukloniGen();
-    m.brojGeneratora();
-    m.Pretraga();
-    m.ispisSvihGeneratora();
+    Mapa m("Ime", "Lokacija", true, true, true, true);*/
+
+    Game g;
+
     return 0;
 }

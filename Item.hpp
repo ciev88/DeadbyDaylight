@@ -40,11 +40,11 @@ class KillerItem:public Item
          Movespeed=ms;
         }
 
-        friend ostream& operator<<(ostream& izlaz, const KillerItem &ki)
+        friend ostream& operator<<(ostream& izlaz, const KillerItem& ki)
         {
-            izlaz<<"Naziv Itema: "<<ki.Naziv<<endl;
-            izlaz<<"Opis Itema: "<<ki.Opis<<endl;
-            izlaz<<"Vrsta Itema: "<<ki.Vrsta_Itema<<endl;
+            izlaz<<"Naziv itema: "<<ki.Naziv<<endl;
+            izlaz<<"Opis itema: "<<ki.Opis<<endl;
+            izlaz<<"Vrsta itema: "<<ki.Vrsta_Itema<<endl;
             izlaz<<"Oneshot:"<<ki.Oneshot<<endl;
             izlaz<<"Movespeed:"<<ki.Movespeed<<endl<<endl;
 
@@ -65,6 +65,17 @@ class SurvivorItem:public Item
         {
          Fastheal=fh;
          BloodPointsMultiplier=bpm;
+        }
+
+        friend ostream& operator<<(ostream& izlaz, const SurvivorItem& si)
+        {
+            izlaz<<"Naziv itema:"<<si.Naziv<<endl;
+            izlaz<<"Opis itema:"<<si.Opis<<endl;
+            izlaz<<"Vrsta itema"<<si.Vrsta_Itema<<endl;
+            izlaz<<"Fastheal:"<<si.Fastheal<<endl;
+            izlaz<<"Blood points multiplier:"<<si.BloodPointsMultiplier<<endl;
+
+            return izlaz;
         }
 
 };

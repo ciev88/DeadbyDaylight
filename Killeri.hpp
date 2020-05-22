@@ -2,7 +2,6 @@
 #define KILLERI_HPP_INCLUDED
 #include "Item.hpp"
 #include "Igrac.hpp"
-enum killer{Trapper, Wraith, Hillbilly, Nurse, Shape, Hag, Doctor, Huntress, Cannibal, Nightmare, Pig, Clown, Spirit, Legion, Plague, Ghost_Face, Demogorgon, Oni, Deathslinger};
 
 class Killer:public Igrac
 {

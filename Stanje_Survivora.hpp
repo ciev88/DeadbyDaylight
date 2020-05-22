@@ -2,7 +2,7 @@
 #define STANJE_SURVIVORA_HPP_INCLUDED
 #include "Totemi.hpp"
 enum health {healthy, injured, broken, downed};
-enum action {normal, chased, healing, genning, mending, bold, locker, chest, openingexit};
+enum action {normal, chased, healing, genning, mending, locker, chest, openingexit};
 enum result {escaped, sacrificed, killed};
 class StanjeSurvivora
 {

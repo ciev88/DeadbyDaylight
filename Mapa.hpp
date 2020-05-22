@@ -22,17 +22,15 @@ void citanje(string Mapa)
 class Mapa
 {
     protected:
-        string ImeMape;
+        string Ime_Mape;
         string Lokacija;
         bool Exiti;
         bool Hatch;
-        Generator g;
-        vector<Generator>Generatori;
 
     public:
-        Mapa(string im, string l, bool e, bool h, bool p, bool pp):g(p, pp)
+        Mapa(string im, string l, bool e, bool h)
         {
-            ImeMape=im;
+            Ime_Mape=im;
             Lokacija=l;
             Exiti=e;
             Hatch=h;
@@ -41,59 +39,6 @@ class Mapa
         void pozivcitanja()
         {
             citanje("Mapa.txt");
-        }
-
-        void dodajGen(Generator g)
-        {
-            Generatori.push_back(g);
-            cout<<"Generator je dodat"<<endl;
-        }   
-
-        void ukloniGen()
-        {
-            Generatori.erase(Generatori.begin()/*+n*/);
-            cout<<"Generator uklonjen"<<endl;
-        }
-
-        int brojGeneratora()
-        {
-            cout<<"Broj Generatora je: "<<Generatori.size()<<endl;
-            return Generatori.size();
-            
-        }
-
-        void Pretraga()
-        {
-            int x=0;
-
-            for(auto it=Generatori.begin(); it!=Generatori.end(); it++)
-            {
-                if(it->ProveraPopravljen()==true)
-                    x++;
-            }
-
-            if(x==5)
-            {
-                Exiti=true;
-                cout<<"Exiti otvoreni"<<endl;
-            }
-            else
-                cout<<"Exiti zatvoreni"<<endl;
-
-        }
-
-        void ispisJednogGeneratora(Generator g)
-        {
-            cout<<g<<endl;
-        }
-
-        void ispisSvihGeneratora()
-        {
-            for(auto it=Generatori.begin(); it!=Generatori.end(); it++)
-            {
-                ispisJednogGeneratora(*it);   
-            }
-
         }
 
 };
