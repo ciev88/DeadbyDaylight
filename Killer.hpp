@@ -20,6 +20,11 @@ public:
         Povezanost=k.Povezanost;
         item=k.item;
     }
+    void Povezan()
+    {
+    	if(Povezanost)
+    	   cout<<"Killer je online"<<endl;
+    }
     friend ostream& operator<<(ostream& izlaz, const  Killer &k)
     {
 
@@ -28,11 +33,6 @@ public:
         izlaz<<"DLC: "<<k.DLC<<endl;
         izlaz<<k.item<<endl<<endl;
         return izlaz;
-    }
-    void Povezan()
-    {
-    	if(Povezanost)
-    	   cout<<"Killer je online"<<endl;
     }
 };
 
