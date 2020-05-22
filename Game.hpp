@@ -24,14 +24,184 @@ protected:
 	Survivor s2;
 	Survivor s3;
 	Survivor s4;
-	vector<Perk> perkovi;
+	vector<Perk*> perkovi;
 public:
 	Game()
 	{
-
-		UnosKillera();
-		UnosSurvivora();
+		UcitajPerkove();
+		ListaPerkova();
+		//UnosKillera();
+		//UnosSurvivora();
 	}
+	void UcitajPerkove()
+    {
+        ifstream file("perkovi.txt");
+        if (file.is_open())
+        {
+            string ImePerka,sTier,sHex,sNeedsNerf,tip;
+            Tier tier;
+            bool hex,needsNerf;
+            while(!file.eof())
+            {
+                file>>ImePerka>>sTier>>sHex>>sNeedsNerf>>tip;
+                if(file.eof()) break;
+                if(sTier=="Yellow")
+                	tier=Yellow;
+                else if(sTier=="Green")
+                	tier=Green;
+                else tier=Purple;
+                if(tip=="KillerPerk")
+                {
+                	if(sHex=="Hex")
+                		hex=true;
+                	else hex=false;
+                	if(sNeedsNerf=="OK")
+                		needsNerf=false;
+                	else needsNerf=true;
+                    KillerPerk* p=new KillerPerk(ImePerka,tier,hex,needsNerf);
+                    perkovi.push_back((Perk*)p);
+                }
+                else
+                {
+                    Perk* p=new Perk(ImePerka,tier);
+                    perkovi.push_back(p);
+                }
+            }
+            file.close();
+        }
+        else
+        {
+        	cout << "Unable to open file. Creating one." << endl;
+        	ofstream file1("perkovi.txt");
+        	file1.close();
+        }
+    }
+	void ListaPerkova()const
+    {
+        if(perkovi.empty())
+            cout << "No perks in file.\n";
+        else
+        {
+        	int j=1;
+        	for(auto i=perkovi.begin();i!=perkovi.end();i++)
+            {
+            	if((*i)->iskiller())
+            		 cout<<j<<". "<<*((KillerPerk*)*i)<<endl;
+            	else cout<<j<<". "<<**i<<endl;
+            	j++;
+            }
+    	}
+    }
+	void SacuvajPerkove()
+	{
+        ofstream file("perkovi.txt");
+        for(auto i=perkovi.begin();i!=perkovi.end();i++)
+        {
+            if((*i)->iskiller())
+            {
+            	file<<*((KillerPerk*)*i)<<" KillerPerk"<<endl;
+            }
+            else
+            {
+            	file<<**i<<" Perk"<<endl;
+            }
+        }
+        file.close();
+    }
+    void DodajPerk()
+    {
+    	char izbor;
+    	cout << "Perk ili KillerPerk? p/k ";
+    	cin >> izbor;
+    	string ImePerka,sTier;
+    	bool hex,needsNerf;
+    	Tier tier;
+    	cout << "Ime perka: ";
+    	cin >> ImePerka;
+    	cout << "Tier: ";
+    	cin >> sTier;
+    	if(sTier=="Yellow")
+    		tier=Yellow;
+    	else if(sTier=="Green")
+    		tier=Green;
+    	else tier=Purple;
+    	if(izbor=='k')
+    	{
+    		char cHex;
+    		cout<<"Hex? d/n ";
+    		cin >> cHex;
+    		if(cHex=='d')
+    			hex=true;
+    		else hex=false;
+    		char cNeedsNerf;
+    		cout << "Needs nerf? d/n ";
+    		cin >> cNeedsNerf;
+    		if(cNeedsNerf=='d')
+    			needsNerf=true;
+    		else needsNerf=false;
+    		KillerPerk* p=new KillerPerk(ImePerka,tier,hex,needsNerf);
+    		perkovi.push_back(p);
+    	}
+    	else
+    	{
+    		Perk* p=new Perk(ImePerka,tier);
+    		perkovi.push_back(p);
+    	}
+    }
+    void ObrisiPerk()
+    {
+    	cout << "Izaberite perk za brisanje:";
+    	ListaPerkova();
+    	int izbor;
+    	cout << "Vas izbor: ";
+    	cin >> izbor;
+    	izbor--;
+    	delete *(perkovi.begin()+izbor);
+    	perkovi.erase(perkovi.begin()+izbor);
+    }
+    void HexPerkovi()
+    {
+        cout << "Svi hex perkovi:\n";
+        for(auto i=perkovi.begin();i!=perkovi.end();i++)
+        {
+        	if((*i)->iskiller() && (*i)->isHex())
+                cout<<*((KillerPerk*)*i);
+        }
+    }
+    void ObicniPerkovi()
+    {
+    	cout << "Obicni perkovi:\n";
+        for(auto i=perkovi.begin();i!=perkovi.end();i++)
+        {
+        	if(!((*i)->iskiller()))
+                cout<<*((KillerPerk*)*i);
+        }
+    }
+    void KillerPerkovi()
+    {
+    	cout << "Killer perkovi:\n";
+        for(auto i=perkovi.begin();i!=perkovi.end();i++)
+        {
+        	if((*i)->iskiller())
+                cout<<*((KillerPerk*)*i);
+        }
+    }
+    void TraziPerkove()
+    {
+    	cout<<"1) Obicni perkovi"<<endl
+    	cout<<"2) Killer perkovi"<<endl;
+    	cout<<"3) Hex perkovi"<<endl;
+    	char izbor;
+    	cin >> izbor;
+    	if(izbor=='1') ObicniPerkovi();
+    	else if(izbor=='2') KillerPerkovi();
+    	else if(izbor=='3') HexPerkovi();
+    	else ListaPerkova();
+    }
+
+
+
+
 	void UnosKillera()
 	{
 		cout << "Unos killera:" << endl;
@@ -112,6 +282,10 @@ public:
 		cout<<"Izaberi survivora (1,2,3,4): "<<endl;
 		int br;
 		cin >> br;
+	}
+	~Game()
+	{
+		for(auto i=perkovi.begin();i!=perkovi.end();i++) delete *i;
 	}
 };
 

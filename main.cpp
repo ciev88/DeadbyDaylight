@@ -1,5 +1,5 @@
 #include "Game.hpp"
-bool StanjeSurvivora::exposed=false;
+//bool StanjeSurvivora::exposed=false;
 int main()
 {
     /*Funkcionalnost jeste da na kraju ispisemo statistku rezultata meca
@@ -36,6 +36,6 @@ int main()
     Mapa m("Ime", "Lokacija", true, true, true, true);*/
 
     Game g;
-
+    g.SacuvajPerkove();
     return 0;
 }
