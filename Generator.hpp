@@ -1,51 +1,46 @@
 #ifndef GENERATOR_HPP_INCLUDED
 #define GENERATOR_HPP_INCLUDED
-#include <fstream>
 class Generator
 {
     protected:
         bool Popravljen;
         double ProcenatPopravljenosti;
     public:
-        Generator()
-        {
-        Popravljen=false;
-        ProcenatPopravljenosti=0;
-        }
-
-        Generator(bool popp, double ppp)
+        Generator(bool popp=false, double ppp=0)
         {
             Popravljen=popp;
             ProcenatPopravljenosti=ppp;
         }
 
-        Generator(double pp)
+        void setGenerator(double pp)
         {
+            if(Popravljen)
+            {
+                cout << "Generator je vec popravljen!" << endl;
+                return;
+            }
             ProcenatPopravljenosti=pp;
             ProveraPopravljen();
         }
-        bool ProveraPopravljen()
+        void ProveraPopravljen()
         {
-            if(ProcenatPopravljenosti==100)
+            if(ProcenatPopravljenosti>=100)
             {
+                ProcenatPopravljenosti=100;
                 Popravljen=true;
-                return true;
+                cout << "Generator popravljen!" << endl;
             }
-            else
-                return false;
         }
-
-        
-
-        friend ostream& operator<<(ostream& izlaz, const Generator &g)
+        friend ostream& operator<<(ostream& izlaz, const Generator& g)
         {
             izlaz<<"Generator: ispis"<<endl;
-            izlaz<<"Popravljen: "<<g.Popravljen<<endl;
+            if(g.Popravljen)
+                izlaz<<"Popravljen: da"<<endl;
+            else
+                izlaz<<"Popravljen: ne"<<endl;
             izlaz<<"Procenat Popravljenosti: "<<g.ProcenatPopravljenosti<<endl<<endl;
-
             return izlaz;
         }
-
 };
 
 #endif // GENERATOR_HPP_INCLUDED

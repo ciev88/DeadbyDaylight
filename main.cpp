@@ -1,26 +1,5 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <fstream>
-#include <cstdlib>
-#include <vector>
-using namespace std;
-const char clear[]="clear"; //UNIX
-//const char clear[]="cls"; //Windows
-#include "Mapa.hpp"
-#include "Generator.hpp"
-#include "Item.hpp"
-#include "Killeri.hpp"
-#include "Mapa.hpp"
-#include "Rezultat_Meca.hpp"
-#include "Stanje_Survivora.hpp"
-#include "Survivori.hpp"
-#include "Zvukovi.hpp"
-#include "Igrac.hpp"
 #include "Game.hpp"
-
 bool StanjeSurvivora::exposed=false;
-
 int main()
 {
     /*Funkcionalnost jeste da na kraju ispisemo statistku rezultata meca

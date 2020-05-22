@@ -1,6 +1,5 @@
 #ifndef STANJE_SURVIVORA_HPP_INCLUDED
 #define STANJE_SURVIVORA_HPP_INCLUDED
-#include "Totemi.hpp"
 enum health {healthy, injured, broken, downed};
 enum action {normal, chased, healing, genning, mending, locker, chest, openingexit};
 enum result {escaped, sacrificed, killed};
@@ -44,10 +43,6 @@ public:
         }
         cout<<"Tacnost exposovanja je:"<< exposed<<endl;
     }
-
-
-
-
 };
 
 #endif // STANJE_SURVIVORA_HPP_INCLUDED

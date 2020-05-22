@@ -1,6 +1,20 @@
 #ifndef GAME_HPP_INCLUDED
-#define GAME_HPP_INCLUDED 
-
+#define GAME_HPP_INCLUDED
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <fstream>
+#include <cstdlib>
+#include <vector>
+using namespace std;
+const char clear[]="clear"; //UNIX
+//const char clear[]="cls"; //Windows
+#include "Mapa.hpp"
+#include "Item.hpp"
+#include "Perk.hpp"
+#include "StanjeSurvivora.hpp"
+#include "Killer.hpp"
+#include "Survivor.hpp"
 class Game
 {
 protected:
@@ -10,40 +24,93 @@ protected:
 	Survivor s2;
 	Survivor s3;
 	Survivor s4;
-	Generator g1;
-	Generator g2;
-	Generator g3;
-	Generator g4;
-	Generator g5;
-	Generator g6;
-	Generator g7;
-	Generator g8;
-	Totem t1;
-	Totem t2;
-	Totem t3;
-	Totem t4;
-	Totem t5;
 public:
-	Game(string IM, string L, bool E, bool H,
-		 string Ime_Killera, bool DLC_Killer, bool Povezanost_Killera, string Ime_Killer_itema, string Opis_Killer_Itema,
-		 string Vrsta_Killer_Itema, bool Oneshot, double Movespeed, 
-		 string Ime_Prezime, bool DLC_Survivor, bool Povezanost_Survivora, string Naziv_Survivor_Itema, 
-		 string Opis_Survivor_Itema, string Vrsta_Survivor_Itema, bool Fastheal, double Blood_Points_Multiplier ):m(IM, L, E, H), k(Ime_Killera, DLC_Killer, Povezanost_Killera, Ime_Killer_itema, Opis_Killer_Itema), s(Ime_Prezime, DLC_Survivor, Povezanost_Survivora, Naziv_Survivor_Itema, Opis_Survivor_Itema, Vrsta_Survivor_Itema, Fastheal, Blood_Points_Multiplier)
-		{}
-
-	void Promeni_Stanje_Survivora()
+	Game()
 	{
-		cout<<"Izaberi survivora 1, 2, 3, 4"<<endl;
-		int br;
-		cin>> br;
-
-		if(br==1)
+		UnosKillera();
+		UnosSurvivora();
+	}
+	void UnosKillera()
+	{
+		cout << "Unos killera:" << endl;
+		string Ime;
+		cout << "Ime killera: ";
+		cin >> Ime;
+		char cDLC;
+		cout << "DLC? d/n ";
+		cin >> cDLC;
+		bool DLC;
+		if(cDLC=='d')
+			DLC=true;
+		else DLC=false;
+		bool Povezanost=true;
+		string ImeItema,OpisItema,VrstaItema;
+		char cOneShot;
+		bool OneShot;
+		double MovementSpeed;
+		cout << "Ime itema: ";
+		cin >> Ime;
+		cout << "Opis itema: ";
+		cin >> OpisItema;
+		cout << "Vrsta itema: ";
+		cin >> VrstaItema;
+		cout << "Oneshot? d/n ";
+		cin >> cOneShot;
+		if(cOneShot=='d')
+			OneShot=true;
+		else OneShot=false;
+		cout << "MovementSpeed: ";
+		cin >> MovementSpeed;
+		Killer k(Ime,DLC,Povezanost,ImeItema,OpisItema,VrstaItema,OneShot,MovementSpeed);
+		this->k=k;
+	}
+	void UnosSurvivora()
+	{
+		for(int i=0;i<4;i++)
 		{
-			
+			cout << "Unos "<<i+1<<". survivora:";
+			string Ime_Prezime;
+			cout << "Ime i prezime: ";
+			cin >> Ime_Prezime;
+			char cDLC;
+			cout << "DLC? d/n ";
+			cin >> cDLC;
+			bool DLC;
+			if(cDLC=='d')
+				DLC=true;
+			else DLC=false;
+	        bool Povezanost=true;
+	        string ImeItema,OpisItema,VrstaItema;
+	        char cFastHeal;
+	        bool FastHeal;
+	        double BPM;
+	        cout << "Ime itema: ";
+			cin >> ImeItema;
+			cout << "Opis itema: ";
+			cin >> OpisItema;
+			cout << "Vrsta itema: ";
+			cin >> VrstaItema;
+			cout << "Fast heal? d/n ";
+			cin >> cFastHeal;
+			if(cFastHeal=='d')
+				FastHeal=true;
+			else
+				FastHeal=false;
+			cout << "Blood point multiplier: ";
+			cin >> BPM;
+			Survivor s(Ime_Prezime,DLC,Povezanost,ImeItema,OpisItema,VrstaItema,FastHeal,BPM);
+			if(i==0) s1=s;
+			else if(i==1) s2=s;
+			else if(i==2) s3=s;
+			else if(i==3) s4=s;
 		}
 	}
-
-
+	void Promeni_Stanje_Survivora()
+	{
+		cout<<"Izaberi survivora (1,2,3,4): "<<endl;
+		int br;
+		cin >> br;
+	}
 };
 
 

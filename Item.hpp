@@ -1,27 +1,30 @@
 #ifndef ITEM_HPP_INCLUDED
 #define ITEM_HPP_INCLUDED
-
 class Item
 {
-    protected:
-        string Naziv;
-        string Opis;
-        string Vrsta_Itema;
-    public:
-        Item(){
-            Naziv="Flashlight";
-            Opis="Emits a beam of light, which could cause killer blindness";
-            Vrsta_Itema="Anti Killer";
-        }
-
-        Item(string n, string o, string v)
-        {
-            Naziv=n;
-            Opis=o;
-            Vrsta_Itema=v;
-        }
+protected:
+    string Naziv;
+    string Opis;
+    string VrstaItema;
+public:
+    Item(){
+        Naziv="Flashlight";
+        Opis="Emits a beam of light, which could cause killer blindness";
+        VrstaItema="Anti Killer";
+    }
+    Item(string n, string o, string v)
+    {
+        Naziv=n;
+        Opis=o;
+        VrstaItema=v;
+    }
+    Item(const Item& i)
+    {
+        Naziv=i.Naziv;
+        Opis=i.Opis;
+        VrstaItema=i.VrstaItema;
+    }
 };
-
 class KillerItem:public Item
 {
     protected:
@@ -30,21 +33,28 @@ class KillerItem:public Item
     public:
         KillerItem():Item()
         {
-         Oneshot=true;
-         Movespeed=1.5;
+            Oneshot=true;
+            Movespeed=1.5;
         }
-
         KillerItem(string n, string o, string v, bool os, double ms):Item(n, o, v)
         {
-         Oneshot=os;
-         Movespeed=ms;
+            Oneshot=os;
+            Movespeed=ms;
+        }
+        KillerItem(const KillerItem& i)
+        {
+            Naziv=i.Naziv;
+            Opis=i.Opis;
+            VrstaItema=i.VrstaItema;
+            Oneshot=i.Oneshot;
+            Movespeed=i.Movespeed;
         }
 
         friend ostream& operator<<(ostream& izlaz, const KillerItem& ki)
         {
             izlaz<<"Naziv itema: "<<ki.Naziv<<endl;
             izlaz<<"Opis itema: "<<ki.Opis<<endl;
-            izlaz<<"Vrsta itema: "<<ki.Vrsta_Itema<<endl;
+            izlaz<<"Vrsta itema: "<<ki.VrstaItema<<endl;
             izlaz<<"Oneshot:"<<ki.Oneshot<<endl;
             izlaz<<"Movespeed:"<<ki.Movespeed<<endl<<endl;
 
@@ -52,7 +62,6 @@ class KillerItem:public Item
         }
 
 };
-
 class SurvivorItem:public Item
 {
     protected:
@@ -66,12 +75,20 @@ class SurvivorItem:public Item
          Fastheal=fh;
          BloodPointsMultiplier=bpm;
         }
+        SurvivorItem(const SurvivorItem& i)
+        {
+            Naziv=i.Naziv;
+            Opis=i.Opis;
+            VrstaItema=i.VrstaItema;
+            Fastheal=i.Fastheal;
+            BloodPointsMultiplier=i.BloodPointsMultiplier;
+        }
 
         friend ostream& operator<<(ostream& izlaz, const SurvivorItem& si)
         {
             izlaz<<"Naziv itema:"<<si.Naziv<<endl;
             izlaz<<"Opis itema:"<<si.Opis<<endl;
-            izlaz<<"Vrsta itema"<<si.Vrsta_Itema<<endl;
+            izlaz<<"Vrsta itema"<<si.VrstaItema<<endl;
             izlaz<<"Fastheal:"<<si.Fastheal<<endl;
             izlaz<<"Blood points multiplier:"<<si.BloodPointsMultiplier<<endl;
 
