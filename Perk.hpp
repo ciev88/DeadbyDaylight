@@ -13,6 +13,7 @@ public:
 		this->tier=tier;
 	}
 	virtual bool iskiller()const {return false;}
+	virtual bool isHex()const {return false;}
 	string getImePerka()const
 	{
 		return ImePerka;

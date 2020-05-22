@@ -1,7 +1,12 @@
 #include "Game.hpp"
-//bool StanjeSurvivora::exposed=false;
+bool StanjeSurvivora::exposed=false;
 int main()
 {
+    Game g;
+    g.play();
+
+
+
     /*Funkcionalnost jeste da na kraju ispisemo statistku rezultata meca
 
       dakle, koji survivor je zavrsio u kom stanju, koji item je izgubljen,
@@ -34,8 +39,6 @@ int main()
     ss.provera(t);
 
     Mapa m("Ime", "Lokacija", true, true, true, true);*/
-
-    Game g;
     g.SacuvajPerkove();
     return 0;
 }

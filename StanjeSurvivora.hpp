@@ -1,47 +1,53 @@
 #ifndef STANJE_SURVIVORA_HPP_INCLUDED
 #define STANJE_SURVIVORA_HPP_INCLUDED
-enum health {healthy, injured, broken, downed};
+enum health {healthy, injured, downed};
 enum action {normal, chased, healing, genning, mending, locker, chest, openingexit};
-enum result {escaped, sacrificed, killed};
+enum result {ingame, escaped, sacrificed, killed};
 class StanjeSurvivora
 {
 protected:
     health h;
     action a;
     result r;
-public:
-
-    StanjeSurvivora(health hh, action aa, result rr)
-    {
-        h=hh;
-        a=aa;
-        r=rr;
-    }
-
     static bool exposed;
-
-    health gethealth()const
+public:
+    StanjeSurvivora()
+    {
+        h=healthy;
+        a=normal;
+        r=ingame;
+    }
+    static bool getExposed()
+    {
+        return exposed;
+    }
+    void Expose()
+    {
+        exposed=true;
+    }
+    void setHealth(health h)
+    {
+        this->h=h;
+    }
+    void setAction(action a)
+    {
+        this->a=a;
+    }
+    void setResult(result r)
+    {
+        this->r=r;
+    }
+    health getHealth()const
     {
         return h;
     }
-
-    action getaction()const
+    action getAction()const
     {
         return a;
     }
-
-    result getresult()const
+    result getResult()const
     {
         return r;
-    }
-
-    void provera(Totem &t)
-    {
-        if(t.getSrusen()==true && t.getHex()==true)
-        {
-            exposed=true;
-        }
-        cout<<"Tacnost exposovanja je:"<< exposed<<endl;
     }
 };
 

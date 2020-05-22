@@ -25,13 +25,15 @@ protected:
 	Survivor s3;
 	Survivor s4;
 	vector<Perk*> perkovi;
+    bool finished;
 public:
 	Game()
 	{
+        finished=false;
 		UcitajPerkove();
 		ListaPerkova();
-		//UnosKillera();
-		//UnosSurvivora();
+		UnosKillera();
+		UnosSurvivora();
 	}
 	void UcitajPerkove()
     {
@@ -188,7 +190,7 @@ public:
     }
     void TraziPerkove()
     {
-    	cout<<"1) Obicni perkovi"<<endl
+    	cout<<"1) Obicni perkovi"<<endl;
     	cout<<"2) Killer perkovi"<<endl;
     	cout<<"3) Hex perkovi"<<endl;
     	char izbor;
@@ -198,10 +200,6 @@ public:
     	else if(izbor=='3') HexPerkovi();
     	else ListaPerkova();
     }
-
-
-
-
 	void UnosKillera()
 	{
 		cout << "Unos killera:" << endl;
@@ -277,12 +275,78 @@ public:
 			else if(i==3) s4=s;
 		}
 	}
-	void Promeni_Stanje_Survivora()
-	{
-		cout<<"Izaberi survivora (1,2,3,4): "<<endl;
-		int br;
-		cin >> br;
-	}
+    void killerMeni()
+    {
+        cout<<"Izaberi survivora(1,2,3,4): ";
+        int izbor;
+        cin >> izbor;
+        Survivor s;
+        if(izbor==1)
+            s=s1;
+        else if(izbor==2)
+            s=s2;
+        else if(izbor==3)
+            s=s3;
+        else
+            s=s4;
+        if(s.interactable())
+        {
+            cout<<"1. Povredi\n2. Obesi\n3. Ubij\n";
+            cout<<"Vas izbor: ";
+            cin >> izbor;
+            if(izbor==1)
+                s.hurt();
+            else if(izbor==2)
+                s.hook();
+            else if(izbor==3)
+                s.kill();
+        }
+        else cout << "Taj survivor vise nije u igri!"<<endl;
+    }
+    void survivorMeni()
+    {
+        cout<<"Izaberi survivora(1,2,3,4): ";
+        int izbor;
+        cin >> izbor;
+        Survivor s;
+        if(izbor==1)
+            s=s1;
+        else if(izbor==2)
+            s=s2;
+        else if(izbor==3)
+            s=s3;
+        else
+            s=s4;
+        if(s.interactable())
+        {
+            cout<<"1. Heal\n2. Gen\n3. Open exit\n";
+            cout<<"Vas izbor: ";
+            cin >> izbor;
+            if(izbor==1)
+                s.heal();
+            else if(izbor==2)
+                cout << "ne radi";
+            else if(izbor==3)
+                cout << "ne radi";
+        }
+        else cout << "Taj survivor vise nije u igri!"<<endl;
+    }
+    void play()
+    {
+        while(!finished){
+        system(clear);
+        cout << "1. Killer\n2. Survivor" << endl;
+        cout << "Igraj: ";
+        int izbor;
+        cin >> izbor;
+        if(izbor==1)
+            killerMeni();
+        else if(izbor==2)
+            survivorMeni();
+        }
+    }
+
+
 	~Game()
 	{
 		for(auto i=perkovi.begin();i!=perkovi.end();i++) delete *i;
