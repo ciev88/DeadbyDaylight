@@ -25,16 +25,20 @@ protected:
 	Survivor s3;
 	Survivor s4;
 	vector<Perk*> perkovi;
-    bool finished;
 public:
 	Game()
 	{
-        finished=false;
 		UcitajPerkove();
 		ListaPerkova();
 		UnosKillera();
 		UnosSurvivora();
 	}
+    bool playable()
+    {
+        if(s1.isingame()||s2.isingame()||s3.isingame()||s4.isingame())
+            return true;
+        else return false;
+    }
 	void UcitajPerkove()
     {
         ifstream file("perkovi.txt");
@@ -280,26 +284,26 @@ public:
         cout<<"Izaberi survivora(1,2,3,4): ";
         int izbor;
         cin >> izbor;
-        Survivor s;
+        Survivor* s;
         if(izbor==1)
-            s=s1;
+            s=&s1;
         else if(izbor==2)
-            s=s2;
+            s=&s2;
         else if(izbor==3)
-            s=s3;
+            s=&s3;
         else
-            s=s4;
-        if(s.interactable())
+            s=&s4;
+        if(s->interactable())
         {
             cout<<"1. Povredi\n2. Obesi\n3. Ubij\n";
             cout<<"Vas izbor: ";
             cin >> izbor;
             if(izbor==1)
-                s.hurt();
+                s->hurt();
             else if(izbor==2)
-                s.hook();
+                s->hook();
             else if(izbor==3)
-                s.kill();
+                s->kill();
         }
         else cout << "Taj survivor vise nije u igri!"<<endl;
     }
@@ -308,33 +312,41 @@ public:
         cout<<"Izaberi survivora(1,2,3,4): ";
         int izbor;
         cin >> izbor;
-        Survivor s;
+        Survivor* s;
         if(izbor==1)
-            s=s1;
+            s=&s1;
         else if(izbor==2)
-            s=s2;
+            s=&s2;
         else if(izbor==3)
-            s=s3;
+            s=&s3;
         else
-            s=s4;
-        if(s.interactable())
+            s=&s4;
+        if(s->interactable())
         {
             cout<<"1. Heal\n2. Gen\n3. Open exit\n";
             cout<<"Vas izbor: ";
             cin >> izbor;
             if(izbor==1)
-                s.heal();
+                s->heal();
             else if(izbor==2)
-                cout << "ne radi";
+                m.popraviGen();
             else if(izbor==3)
-                cout << "ne radi";
+            {
+                m.openExit();
+                if(m.otvoreniExiti())
+                {
+                    s1.escape();
+                    s2.escape();
+                    s3.escape();
+                    s4.escape();
+                }
+            }
         }
         else cout << "Taj survivor vise nije u igri!"<<endl;
     }
     void play()
     {
-        while(!finished){
-        system(clear);
+        while(playable()){
         cout << "1. Killer\n2. Survivor" << endl;
         cout << "Igraj: ";
         int izbor;
@@ -344,6 +356,13 @@ public:
         else if(izbor==2)
             survivorMeni();
         }
+        ofstream file("rezultatmeca.txt");
+        file<<"Killer: "<<k;
+        file<<"Survivor 1: "<<s1;
+        file<<"Survivor 2: "<<s2;
+        file<<"Survivor 3: "<<s3;
+        file<<"Survivor 4: "<<s4;
+        file.close();
     }
 
 

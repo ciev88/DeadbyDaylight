@@ -12,7 +12,7 @@ class Generator
             ProcenatPopravljenosti=ppp;
         }
 
-        void setGenerator(double pp)
+        void setProcenatPopravljenosti(double pp)
         {
             if(Popravljen)
             {

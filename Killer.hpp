@@ -27,11 +27,9 @@ public:
     }
     friend ostream& operator<<(ostream& izlaz, const  Killer &k)
     {
-
-        izlaz<<"Killer: ispis"<<endl;
-        izlaz<<"Ime: "<<k.Ime<<endl;
-        izlaz<<"DLC: "<<k.DLC<<endl;
-        izlaz<<k.item<<endl<<endl;
+        izlaz<<k.Ime<<" ";
+        izlaz<<"DLC: "<<k.DLC<<" ";
+        izlaz<<k.item<<endl;
         return izlaz;
     }
 };

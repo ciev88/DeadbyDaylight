@@ -81,19 +81,42 @@ public:
         else cout << "Ne moguce healovati." << endl;
         stanje.setHealth(h);
     }
+    void escape()
+    {
+        health h=stanje.getHealth();
+        if(h==healthy||h==injured)
+            stanje.setResult(escaped);
+    }
+    string rezultat()const
+    {
+        result r=stanje.getResult();
+        if(r==sacrificed)
+            return "sacrificed";
+        if(r==killed)
+            return "killed";
+        if(r==escaped)
+            return "escaped";
+        return ""; //zbog nekog warninga
+    }
     friend ostream& operator<<(ostream& izlaz, const  Survivor &s)
     {
 
-        izlaz<<"Survivor: ispis"<<endl;
-        izlaz<<"Ime i Prezime: "<<s.Ime<<" "<<s.Prezime<<endl;
-        izlaz<<"DLC: "<<s.DLC<<endl;
-        izlaz<<s.item<<endl<<endl;
+        izlaz<<s.Ime<<" "<<s.Prezime<<" ";
+        izlaz<<"DLC: "<<s.DLC<<" ";
+        izlaz<<s.rezultat()<<" ";
+        izlaz<<s.item<<endl;
         return izlaz;
     }
     void Povezan()
     {
         if(Povezanost)
             cout<<"Survivor je online"<<endl;
+    }
+    bool isingame()
+    {
+        if(stanje.getResult()==ingame)
+            return true;
+        else return false;
     }
 };
 

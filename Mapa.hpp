@@ -2,22 +2,6 @@
 #define MAPA_HPP_INCLUDED
 #include "Generator.hpp"
 #include "Totem.hpp"
-void citanje(string Mapa)
-{
-    string linija;
-    ifstream fajl (Mapa);
-    if (fajl.is_open())
-    {
-        while ( getline (fajl,linija) )
-        {
-            cout << linija << '\n';
-        }
-        fajl.close();
-    }
-
-    else
-        cout << "Neuspesno otvoren fajl";
-}
 class Mapa
 {
 protected:
@@ -25,30 +9,54 @@ protected:
     string Lokacija;
     bool Exiti;
     bool Hatch;
-    Generator g1;
-    Generator g2;
-    Generator g3;
-    Generator g4;
-    Generator g5;
-    Generator g6;
-    Generator g7;
-    Generator g8;
-    Totem t1;
-    Totem t2;
-    Totem t3;
-    Totem t4;
-    Totem t5;
+    int brojPopravljenih;
+    Generator g[8];
+    Totem t[5];
 public:
-    Mapa(string im="", string l="", bool e=false, bool h=false)
+    Mapa(string im="", string l="")
     {
         Ime_Mape=im;
         Lokacija=l;
-        Exiti=e;
-        Hatch=h;
+        Exiti=false;
+        Hatch=false;
+        brojPopravljenih=0;
     }
-    void pozivcitanja()
+    void popraviGen()
     {
-        citanje("Mapa.txt");
+        if(brojPopravljenih==5)
+            cout<<"Generatori vec popravljeni!"<<endl;
+        else
+            g[brojPopravljenih++].setProcenatPopravljenosti(100);
+    }
+    void openExit()
+    {
+        if(brojPopravljenih==5)
+        {
+            cout<<"Exiti otvoreni, svi healthy i injured survivori pobegli!"<<endl;
+            Exiti=true;
+        }
+        else
+            cout<<"Generatori nisu popravljeni!"<<endl;
+    }
+    bool otvoreniExiti()
+    {
+        return Exiti;
+    }
+    void citanje(string Mapa="Mapa.txt")
+    {
+        string linija;
+        ifstream fajl (Mapa);
+        if (fajl.is_open())
+        {
+            while ( getline (fajl,linija) )
+            {
+                cout << linija << '\n';
+            }
+            fajl.close();
+        }
+
+        else
+            cout << "Neuspesno otvoren fajl";
     }
 };
 

@@ -1,0 +1,31 @@
+Killer: d DLC: 1 Naziv itema: 
+Opis itema: d
+Vrsta itema: d
+Oneshot:1
+Movespeed:10
+
+
+Survivor 1: 1 1 DLC: 1 escaped Naziv itema:d
+Opis itema:d
+Vrsta itemad
+Fastheal:1
+Blood points multiplier:1
+
+Survivor 2: 2 2 DLC: 1 escaped Naziv itema:d
+Opis itema:d
+Vrsta itemad
+Fastheal:1
+Blood points multiplier:2
+
+Survivor 3: d 3 DLC: 1 escaped Naziv itema:3
+Opis itema:3
+Vrsta itema3
+Fastheal:0
+Blood points multiplier:3
+
+Survivor 4: 4 4 DLC: 1 escaped Naziv itema:d
+Opis itema:d
+Vrsta itemad
+Fastheal:1
+Blood points multiplier:4
+
